@@ -1,0 +1,73 @@
+doctype html
+html(lang="en")
+	head
+		title= title
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+		link(href='stylesheets/style.css', rel="stylesheet", type="text/css")
+		script(type='text/javascript').
+			function addPlayer(parent){
+					$.post("addPlayer",{ playerId:parent.id},
+					function(data,status){
+						alert("Data: " + data + "\nStatus: " + status);
+					});
+				}
+			$('document').ready(function(){
+				$.getJSON( "teamComposition.json", function( data ) {
+						var composition = data['teamComposition'];
+						var selector = [];
+						$.each( composition, function( key, val ) {
+						console.log(key+"->"+val);
+						selector.push( "<option value='" + key + "'>" + val + "</option>" );
+					});
+
+					var selectTag = $( "<select/>", {
+						"id": "compositionSelector",
+						html: selector.join( "" )
+						});
+					$('#compositionSelector').html(selectTag);
+					});
+				$.getJSON( "playerList.json", function( data ) {
+						var players = data['players'];
+						var rows = [];
+						rows.push("<tr><th>name</th><th>expertise</th><th>price</th><th>country</th><th></th></tr>")
+						$.each( players, function( key, val ) {
+						console.log(key+"->"+val);
+						rows.push( "<tr id='" + val['name'] + "'><td>" + val['name'] + "</td><td>" + val['expertise'] + "</td><td>"+val['price']+"</td><td>"+val['team']+"</td><td><input type='button' value='+' class='addPlayerButton' onclick=\"addPlayer(this.parentNode.parentNode)\"/></td></tr>" );
+					});
+
+					var playerList = $( "<table/>", {
+						"class": "compositionSelector",
+						html: rows.join( "" )
+						});
+					$('#allPlayersContainer').html(playerList);
+					});
+
+			})
+	body
+		h1= title
+		#container
+			div#teamNameContainer
+				span. Team Name : 
+				input#teamName(type="text")
+				input#teamNameSaveButton(type="button" value="Save")
+			div#compositionContainer
+				span. Team Composition : 
+				span#compositionSelector. Loading...
+			div#allPlayers
+				h2. Players:
+				div#allPlayersContainer. Loading...
+			div#selectedPlayers
+				h2. Selected Players:
+				div#selectedPlayersContainer
+					div#amountLeftContainer
+						h4
+							span. Amount Left : 
+							span#amountLeft. 34
+					div#selectedBatsman
+						h3. Batsman
+					div#selectedBowler
+						h3. Bowler
+					div#selectedAllRounder
+						h3. All Rounder
+					div#selectedWicketkeeper
+						h3. Wicketkeeper

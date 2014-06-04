@@ -1,0 +1,124 @@
+{
+	"players" : [
+	{
+		"name" : "player1",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player2",
+		"expertise" : "Bowler",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player3",
+		"expertise" : "All-rounder",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player4",
+		"expertise" : "WicketKeeper",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player5",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player6",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player7",
+		"expertise" : "WicketKeeper",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player8",
+		"expertise" : "Batsman",
+		"price" : "10000000",		
+		"team" : "ind"
+	},
+	{
+		"name" : "player9",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player10",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player11",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player12",
+		"expertise" : "Bowler",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player13",
+		"expertise" : "All-rounder",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player14",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player15",
+		"expertise" : "Bowler",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player16",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player17",
+		"expertise" : "Batsman",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player18",
+		"expertise" : "WicketKeeper",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player19",
+		"expertise" : "Bowler",
+		"price" : "10000000",
+		"team" : "ind"
+	},
+	{
+		"name" : "player20",
+		"expertise" : "Bowler",
+		"price" : "10000000",
+		"team" : "ind"
+	}
+	]
+}
