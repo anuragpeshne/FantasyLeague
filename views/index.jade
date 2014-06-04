@@ -9,7 +9,7 @@ html(lang="en")
 				$.post("addPlayer",{ playerId : parent.id },
 					function(data,status){
 						if(data.status === "success"){
-							$('#notificationContainer').html("Player Added").fadeOut(5000);
+							$('#notificationContainer').html("Player Added").fadeIn(250).fadeOut(1000);
 							$('#amountLeft').html(JSON.parse(data.amount));
 							updatePlayers(data.type);
 							$('tr#'+parent.id+' input').fadeOut(500);
@@ -59,9 +59,11 @@ html(lang="en")
 					$('#compositionSelector').trigger("change");
 				})
 				$('#teamNameSaveButton').click(updateTeamName);
-				function updateTeamName(){
+				function updateTeamName(notify){
 					$.post( "teamName", {'name' : $('#teamName').val()},
 						function( data, status ) {
+							if(notify != false)
+								$('#notificationContainer').html("Team Name saved").fadeIn(250).fadeOut(1000);
 							$('#teamName').val(data);	
 					})
 				}
@@ -83,14 +85,14 @@ html(lang="en")
 						function(data,status){
 							console.log(status);
 							if(data.status === "success"){
-								$('#notificationContainer').html("Composition Changed").fadeOut(5000);
 								updateAmount();
 								updatePlayers('Batsman');
 								updatePlayers('Bowler');
 								updatePlayers('All-rounder');
 								updatePlayers('wicketKeeper');
 								getPlayerList();
-								updateTeamName();
+								updateTeamName(false);
+								$('#notificationContainer').html("Composition Changed").fadeIn(250).fadeOut(1000);
 							}
 							else {
 								alert(data.remarks);

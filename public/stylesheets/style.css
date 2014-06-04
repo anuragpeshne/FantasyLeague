@@ -16,3 +16,12 @@ a {
 	width: 50%;
 	float: left;
 }
+
+#notificationContainer {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	text-align: center;
+	color: green;
+	background-color: yellow;
+}

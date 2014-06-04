@@ -83,7 +83,7 @@ var Team = {
 	resetPlayers: function(){
 		this.batsman = [];
 		this.bowlers = [];
-		this.allowedRounder = [];
+		this.allRounders = [];
 		this.wicketKeeper = '';
 		this.amount = 100000000;
 		for (var i = playerList.length - 1; i >= 0; i--) {
