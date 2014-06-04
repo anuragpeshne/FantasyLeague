@@ -34,6 +34,7 @@ if ('development' == app.get('env')) {
 team.init();
 
 app.get('/', routes.index);
+app.post('/addPlayer', team.addPlayer);
 //app.get('/addPlayer', team.addPlayer);
 
 http.createServer(app).listen(app.get('port'), function(){

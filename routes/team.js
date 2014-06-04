@@ -11,27 +11,7 @@ var Team = {
 	wicketKeeper: '',
 	amount: 10000000,		//100 million = 100 * 10 lakh
 
-	addPlayer = function(req, res){
-		var playerName = req.body.playerName;
-		var playerRow = getPlayerRow(playerName);
-		var added = false;
-		if(addingAllowed(playerRow)){
-			if(playerRow.expertise.toUpperCase() === "Batsman".toUpperCase())
-				batsman.push(playerName);
-			else if(playerRow.expertise.toUpperCase() === "Bowler".toUpperCase())
-				bowlers.push(playerName);
-			else if(playerRow.expertise.toUpperCase() === "All-rounder".toUpperCase())
-				allRounders.push(playerName);
-			else if(playerRow.expertise.toUpperCase() === "WicketKeeper".toUpperCase())
-				wicketweeker = playerName;
-
-			amount = amount - parseInt(playerRow['price']);
-			console.log("player added -> " + playerName);
-			added = true;
-		}
-		res.json({'status':'success','amount':amount});
-	}
-	addingAllowed = function(playerRow){
+	addingAllowed : function(playerRow){
 		var expertise = playerRow['expertise'];
 		var teamCompositionChosen = teamCompositionOptions[teamCompositionCode];
 		if(expertise.toUpperCase() === "Batsman".toUpperCase()){
@@ -66,6 +46,27 @@ var Team = {
 			else
 				return false;
 		}
+	},
+	addPlayer : function(req, res){
+		var playerName = req.body.playerId;
+		console.log(playerName);
+		var playerRow = getPlayerRow(playerName);
+		var added = false;
+		if(addingAllowed(playerRow)){
+			if(playerRow.expertise.toUpperCase() === "Batsman".toUpperCase())
+				batsman.push(playerName);
+			else if(playerRow.expertise.toUpperCase() === "Bowler".toUpperCase())
+				bowlers.push(playerName);
+			else if(playerRow.expertise.toUpperCase() === "All-rounder".toUpperCase())
+				allRounders.push(playerName);
+			else if(playerRow.expertise.toUpperCase() === "WicketKeeper".toUpperCase())
+				wicketweeker = playerName;
+
+			amount = amount - parseInt(playerRow['price']);
+			console.log("player added -> " + playerName);
+			added = true;
+		}
+		res.json({'status':'success','amount':amount});
 	}
 }
 
@@ -73,8 +74,8 @@ var team1;
 
 if( typeof Object.beget !== 'function' ){
 		Object.beget = function(o){
-		var F =new Function(){};
-		F.prototype = o;
+			var F = function(){};
+			F.prototype = o;
 		return new F();
 	}
 }
@@ -103,12 +104,15 @@ exports.init = function(){
 
 	//create a new object
 	team1 = Object.beget(Team);
+	exports.addPlayer = team1.addPlayer;
 };
 
 
 exports.getList = function(req, res){
   res.send("respond with a resource");
 };
+
+exports.addPlayer = function(){};
 
 function getPlayerRow(playerName){
 	for(playerIndex in playerList){
