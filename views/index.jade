@@ -6,12 +6,65 @@ html(lang="en")
 		link(href='stylesheets/style.css', rel="stylesheet", type="text/css")
 		script(type='text/javascript').
 			function addPlayer(parent){
-					$.post("addPlayer",{ playerId:parent.id},
+				$.post("addPlayer",{ playerId : parent.id },
 					function(data,status){
-						alert("Data: " + data + "\nStatus: " + status);
+						if(data.status === "success"){
+							$('#notificationContainer').html("Player Added").fadeOut(5000);
+							$('#amountLeft').html(JSON.parse(data.amount));
+							updatePlayers(data.type);
+							$('tr#'+parent.id+' input').fadeOut(500);
+						}
+						else {
+							alert(data.remarks);
+						}
+					}	
+				)	
+			}
+			function updateAmount(){
+				$.getJSON( "getAmount", function( data ) {
+					$('#amountLeft').html(JSON.parse(data));
+				});
+			}
+			function updatePlayers(type){
+				console.log("in update players")
+				$.post( "updatePlayers", {'type' : type},
+					function( data, status ) {
+						var players = [];
+						$.each( data, function( key, val ) {
+							players.push( "<li>" + val + "</li>" );
+						})
+
+					var list = $( "<ol/>", {
+						//"id": "compositionSelector",
+						html: players.join( "" )
 					});
-				}
+					if(type === "Batsman")
+						$('#selectedBatsman').html(list);
+					else if(type === "Bowler")
+						$('#selectedBowler').html(list);
+					else if(type === "All-rounder")
+						$('#selectedAllRounder').html(list);
+					else
+						$('#selectedWicketkeeper').html(list);
+				})
+			}
 			$('document').ready(function(){
+				updatePlayers('Batsman');
+				updatePlayers('Bowler');
+				updatePlayers('All-rounder');
+				updatePlayers('wicketKeeper');
+				updateAmount();
+				updateTeamName();
+				$('#resetButton').click(function(){
+					$('#compositionSelector').trigger("change");
+				})
+				$('#teamNameSaveButton').click(updateTeamName);
+				function updateTeamName(){
+					$.post( "teamName", {'name' : $('#teamName').val()},
+						function( data, status ) {
+							$('#teamName').val(data);	
+					})
+				}
 				$.getJSON( "teamComposition.json", function( data ) {
 						var composition = data['teamComposition'];
 						var selector = [];
@@ -24,27 +77,55 @@ html(lang="en")
 						"id": "compositionSelector",
 						html: selector.join( "" )
 						});
-					$('#compositionSelector').html(selectTag);
+					$('#compositionSelectorContainer').html(selectTag);
+					$('#compositionSelector').change(function(){
+						$.post("changeComposition",{ compositionCode : $(this).val()},
+						function(data,status){
+							console.log(status);
+							if(data.status === "success"){
+								$('#notificationContainer').html("Composition Changed").fadeOut(5000);
+								updateAmount();
+								updatePlayers('Batsman');
+								updatePlayers('Bowler');
+								updatePlayers('All-rounder');
+								updatePlayers('wicketKeeper');
+								getPlayerList();
+								updateTeamName();
+							}
+							else {
+								alert(data.remarks);
+							}
+						});
 					});
-				$.getJSON( "playerList.json", function( data ) {
-						var players = data['players'];
-						var rows = [];
-						rows.push("<tr><th>name</th><th>expertise</th><th>price</th><th>country</th><th></th></tr>")
-						$.each( players, function( key, val ) {
+				});
+				function getPlayerList(){
+					$.getJSON( "playerList", function( data ) {
+					var players = data;
+					var rows = [];
+					rows.push("<tr><th>name</th><th>expertise</th><th>price</th><th>country</th><th></th></tr>")
+					$.each( players, function( key, val ) {
 						console.log(key+"->"+val);
-						rows.push( "<tr id='" + val['name'] + "'><td>" + val['name'] + "</td><td>" + val['expertise'] + "</td><td>"+val['price']+"</td><td>"+val['team']+"</td><td><input type='button' value='+' class='addPlayerButton' onclick=\"addPlayer(this.parentNode.parentNode)\"/></td></tr>" );
+						var pushStr = "<tr id='" + val['name'] + "'><td>" + val['name'] + "</td><td>" + val['expertise'] + "</td><td>"+val['price']+"</td><td>"+val['team']+"</td>"
+						if(val['used'] === 0)
+							pushStr = pushStr + "<td><input type='button' value='+' class='addPlayerButton' onclick=\"addPlayer(this.parentNode.parentNode)\"/></td></tr>"
+						else
+							pushStr = pushStr + "<td></td>";
+						rows.push(pushStr);
 					});
 
 					var playerList = $( "<table/>", {
 						"class": "compositionSelector",
 						html: rows.join( "" )
-						});
-					$('#allPlayersContainer').html(playerList);
 					});
+					$('#allPlayersContainer').html(playerList);
+				});
+				}
+				getPlayerList();
 
 			})
 	body
 		h1= title
+		div#notificationContainer
 		#container
 			div#teamNameContainer
 				span. Team Name : 
@@ -52,7 +133,8 @@ html(lang="en")
 				input#teamNameSaveButton(type="button" value="Save")
 			div#compositionContainer
 				span. Team Composition : 
-				span#compositionSelector. Loading...
+				span#compositionSelectorContainer. Loading...
+			input(type="button", value="Reset All", id="resetButton")
 			div#allPlayers
 				h2. Players:
 				div#allPlayersContainer. Loading...
@@ -62,12 +144,16 @@ html(lang="en")
 					div#amountLeftContainer
 						h4
 							span. Amount Left : 
-							span#amountLeft. 34
-					div#selectedBatsman
+							span#amountLeft. 10000000
+					div#selectedBatsmanContainer
 						h3. Batsman
-					div#selectedBowler
+						div#selectedBatsman
+					div#selectedBowlerContainer
 						h3. Bowler
-					div#selectedAllRounder
+						div#selectedBowler
+					div#selectedAllRounderContainer
 						h3. All Rounder
-					div#selectedWicketkeeper
+						div#selectedAllRounder
+					div#selectedWicketkeeperContainer
 						h3. Wicketkeeper
+						div#selectedWicketkeeper

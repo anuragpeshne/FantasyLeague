@@ -3,122 +3,142 @@
 	{
 		"name" : "player1",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player2",
 		"expertise" : "Bowler",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player3",
 		"expertise" : "All-rounder",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player4",
 		"expertise" : "WicketKeeper",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player5",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player6",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player7",
 		"expertise" : "WicketKeeper",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player8",
 		"expertise" : "Batsman",
-		"price" : "10000000",		
-		"team" : "ind"
+		"price" : 10000000,		
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player9",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player10",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player11",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player12",
 		"expertise" : "Bowler",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player13",
 		"expertise" : "All-rounder",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player14",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player15",
 		"expertise" : "Bowler",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player16",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player17",
 		"expertise" : "Batsman",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player18",
 		"expertise" : "WicketKeeper",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player19",
 		"expertise" : "Bowler",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	},
 	{
 		"name" : "player20",
 		"expertise" : "Bowler",
-		"price" : "10000000",
-		"team" : "ind"
+		"price" : 10000000,
+		"team" : "ind",
+		"used" : 0
 	}
 	]
 }

@@ -36,7 +36,10 @@ team.init();
 app.get('/', routes.index);
 app.post('/addPlayer', team.addPlayer);
 app.post('/changeComposition', team.changeComposition);
+app.post('/updatePlayers', team.updatePlayers);
 app.get('/getAmount', team.getAmount);
+app.get('/playerList', team.getPlayerList);
+app.post('/teamName', team.teamName);
 //app.get('/addPlayer', team.addPlayer);
 
 http.createServer(app).listen(app.get('port'), function(){
